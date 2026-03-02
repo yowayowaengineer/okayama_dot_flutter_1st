@@ -1,0 +1,32 @@
+{
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off",
+    "editor.rulers": [
+      80
+    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit",
+      "source.addMissingImports": "explicit",
+      "quickfix.insertSemicolon": "explicit"
+    }
+  },
+  "cSpell.words": [
+    "connpass",
+    "enjin",
+    "gbdaitokai",
+    "Icebreak",
+    "Kaigi",
+    "qiita",
+    "wakamono",
+    "webp",
+    "yakuran",
+    "yowayowa"
+  ]
+}
