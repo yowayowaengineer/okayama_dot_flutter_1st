@@ -69,6 +69,10 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
   late Animation<double> _animation;
   bool _isMovingRight = false;
   int _imageIndex = 0;
+  bool _animationStarted = false;
+
+  /// 停止中（1スライド目）に表示する画像。
+  static const _idleImagePath = 'assets/images/player-idle.png';
 
   final List<String> _imagePaths = [
     'assets/images/player-walk-left.gif',
@@ -81,7 +85,8 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
     _controller = AnimationController(
       duration: const Duration(minutes: 20),
       vsync: this,
-    )..repeat();
+    );
+    // アニメーションはルートが /icebreak を離れたタイミングで startAnimation() により開始する
 
     _animation = Tween<double>(
       begin: 0.0,
@@ -98,6 +103,27 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
         });
       }
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 2スライド目以降では context.flutterDeck.router で判定してアニメーション開始
+    if (!_animationStarted && mounted) {
+      final slideIndex = context.flutterDeck.router.currentSlideIndex;
+      if (slideIndex >= 1) {
+        _animationStarted = true;
+        _controller.repeat();
+        setState(() {}); // 停止中画像→歩行画像の切り替えを即反映
+      }
+    }
+  }
+
+  /// icebreak の次に進んだときに一度だけ呼び、フッターアニメーションを開始する
+  void startAnimation() {
+    if (_animationStarted || !mounted) return;
+    _animationStarted = true;
+    _controller.repeat();
   }
 
   @override
@@ -137,25 +163,35 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
               animation: _animation,
               builder: (context, child) {
                 double position;
-
-                if (_animation.value <= 0.5) {
-                  final progress = _animation.value * 2.0;
-                  position =
-                      rightEndPosition -
-                      (rightEndPosition - logoPosition + imageSize) * progress;
+                if (_animationStarted) {
+                  if (_animation.value <= 0.5) {
+                    final progress = _animation.value * 2.0;
+                    position =
+                        rightEndPosition -
+                        (rightEndPosition - logoPosition + imageSize) *
+                            progress;
+                  } else {
+                    final progress = (_animation.value - 0.5) * 2.0;
+                    position =
+                        logoPosition -
+                        imageSize +
+                        (rightEndPosition - logoPosition + imageSize) *
+                            progress;
+                  }
                 } else {
-                  final progress = (_animation.value - 0.5) * 2.0;
-                  position =
-                      logoPosition -
-                      imageSize +
-                      (rightEndPosition - logoPosition + imageSize) * progress;
+                  // 停止中はアニメーション開始位置（右端）に表示し、動画へ自然に繋がるようにする
+                  position = rightEndPosition;
                 }
+
+                final imagePath = _animationStarted
+                    ? _imagePaths[_imageIndex]
+                    : _idleImagePath;
 
                 return Positioned(
                   left: position,
                   top: footerTop - (screenHeight * 0.9),
                   child: Image.asset(
-                    _imagePaths[_imageIndex],
+                    imagePath,
                     width: imageSize,
                     height: imageSize,
                     fit: BoxFit.contain,
