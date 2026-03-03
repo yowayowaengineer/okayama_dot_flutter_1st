@@ -4,6 +4,7 @@ import 'package:flutter_deck/flutter_deck.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:okayama_dot_flutter_1st/l10n/app_localizations.dart';
 import 'package:okayama_dot_flutter_1st/slides/slides.dart';
+import 'package:okayama_dot_flutter_1st/theme/app_colors.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -22,7 +23,39 @@ class _AppState extends State<App> {
       designSize: const Size(1920, 1080),
       builder: (context, child) => FlutterDeckApp(
         slides: slides,
+        lightTheme: FlutterDeckThemeData(
+          brightness: Brightness.light,
+          theme: ThemeData(
+            useMaterial3: true,
+            scaffoldBackgroundColor: AppColors.deckBackground,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColors.deckText,
+              brightness: Brightness.light,
+              surface: AppColors.deckBackground,
+              onSurface: AppColors.deckText,
+            ),
+          ),
+          textTheme: const FlutterDeckTextTheme().apply(color: AppColors.deckText),
+        ),
+        darkTheme: FlutterDeckThemeData(
+          brightness: Brightness.dark,
+          theme: ThemeData(
+            useMaterial3: true,
+            scaffoldBackgroundColor: AppColors.deckBackground,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColors.deckText,
+              brightness: Brightness.dark,
+              surface: AppColors.deckBackground,
+              onSurface: AppColors.deckText,
+            ),
+          ),
+          textTheme: const FlutterDeckTextTheme().apply(color: AppColors.deckText),
+        ),
         configuration: FlutterDeckConfiguration(
+          background: const FlutterDeckBackgroundConfiguration(
+            light: FlutterDeckBackground.solid(AppColors.deckBackground),
+            dark: FlutterDeckBackground.solid(AppColors.deckBackground),
+          ),
           controls: const FlutterDeckControlsConfiguration(
             presenterToolbarVisible: true,
             gestures: FlutterDeckGesturesConfiguration.mobileOnly(),
