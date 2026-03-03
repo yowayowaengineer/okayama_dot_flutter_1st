@@ -8,7 +8,7 @@ class TodayAgendaSlide extends FlutterDeckSlideWidget {
         configuration: const FlutterDeckSlideConfiguration(
           route: '/today-agenda',
           title: '今日話すこと',
-          header: FlutterDeckHeaderConfiguration(title: '今日話すこと'),
+          header: FlutterDeckHeaderConfiguration(title: '📋今日話すこと'),
         ),
       );
 
@@ -33,7 +33,7 @@ class _TodayAgendaSlideContentState extends State<_TodayAgendaSlideContent> {
 
   void _onTap() {
     setState(() {
-      if (_visibleCount < 5) {
+      if (_visibleCount < 6) {
         _visibleCount++;
       }
     });
