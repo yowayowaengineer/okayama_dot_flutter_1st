@@ -46,6 +46,8 @@ class _VisionSlideContentState extends State<_VisionSlideContent> {
 
   static const _cardTextStyle = TextStyle(fontSize: 32);
   static const _cardHorizontalPadding = 28.0;
+  /// 右端の文字が切れないよう横幅に加える余白
+  static const _cardWidthBuffer = 32.0;
 
   double _textWidth(String text) {
     final painter = TextPainter(
@@ -53,7 +55,7 @@ class _VisionSlideContentState extends State<_VisionSlideContent> {
       maxLines: 1,
       textDirection: TextDirection.ltr,
     )..layout(minWidth: 0, maxWidth: double.infinity);
-    return painter.width + _cardHorizontalPadding * 2;
+    return painter.width + _cardHorizontalPadding * 2 + _cardWidthBuffer;
   }
 
   @override

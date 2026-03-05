@@ -1,6 +1,7 @@
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:okayama_dot_flutter_1st/slides/src/app_dev/app_dev_slide.dart';
 import 'package:okayama_dot_flutter_1st/slides/src/closing/ending_slide.dart';
+import 'package:okayama_dot_flutter_1st/slides/src/flutter_connections/flutter_connections_slide.dart';
 import 'package:okayama_dot_flutter_1st/slides/src/me/who_am_i_1_slide.dart';
 import 'package:okayama_dot_flutter_1st/slides/src/opening/icebreak_slide.dart';
 import 'package:okayama_dot_flutter_1st/slides/src/opening/today_agenda_slide.dart';
@@ -19,6 +20,9 @@ List<FlutterDeckSlideWidget> get slides => [
 
   // アプリ開発は良いものだぞ
   const AppDevSlide(),
+
+  // Flutterでつながる
+  const FlutterConnectionsSlide(),
 
   // クロージング
   const EndingSlide(),
