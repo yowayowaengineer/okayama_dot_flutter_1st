@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf lib/slides/src/_previous)",
+      "Bash(rm -f assets/images/yakuran.jpg assets/images/QR_yakuran.png assets/images/psc.webp assets/images/oso.webp assets/images/flutter_contest.webp assets/images/enjin_circle_wakamono.png assets/images/QR_discord.png assets/images/logo_word_512x512.webp assets/images/connpass.webp assets/images/i_love_money.webp assets/images/qiita1.png assets/images/qiita2.png assets/images/qiita3.png assets/images/qiita4.png assets/images/qiita5.png assets/images/qiita6.png assets/images/dart.webp assets/images/riverpod.png)"
+    ]
+  }
+}
