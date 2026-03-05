@@ -8,8 +8,8 @@ class WhoAmISlide1 extends FlutterDeckSlideWidget {
     : super(
         configuration: const FlutterDeckSlideConfiguration(
           route: '/who-am-i-1',
-          title: '自己紹介①',
-          header: FlutterDeckHeaderConfiguration(title: 'よわよわエンジニア is 誰'),
+          title: '自己紹介',
+          header: FlutterDeckHeaderConfiguration(title: '👋よわよわエンジニア is 誰'),
         ),
       );
 
