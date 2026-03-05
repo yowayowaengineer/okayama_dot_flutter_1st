@@ -133,7 +133,7 @@ class _EndingSlideContentState extends State<_EndingSlideContent>
                   ),
                 // 3行目：R.png（400×400・影なし・でーん！スケールエフェクト）
                 if (_showRevengeLine) ...[
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 128),
                   Center(
                     child: ScaleTransition(
                       scale: _impactScale,
@@ -141,15 +141,19 @@ class _EndingSlideContentState extends State<_EndingSlideContent>
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
                           'assets/images/R.png',
-                          width: 400,
-                          height: 400,
+                          width: 600,
+                          height: 600,
                           fit: BoxFit.contain,
                           errorBuilder: (_, __, ___) => SizedBox(
-                            width: 400,
-                            height: 400,
+                            width: 600,
+                            height: 600,
                             child: Container(
                               color: Colors.grey.withOpacity(0.2),
-                              child: Icon(Icons.image_outlined, size: 48, color: Colors.grey.withOpacity(0.6)),
+                              child: Icon(
+                                Icons.image_outlined,
+                                size: 48,
+                                color: Colors.grey.withOpacity(0.6),
+                              ),
                             ),
                           ),
                         ),
