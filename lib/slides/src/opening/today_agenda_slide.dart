@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
-import 'package:gap/gap.dart';
 
 class TodayAgendaSlide extends FlutterDeckSlideWidget {
   const TodayAgendaSlide({super.key})
@@ -39,6 +38,10 @@ class _TodayAgendaSlideContentState extends State<_TodayAgendaSlideContent> {
     });
   }
 
+  static const _itemStyle = TextStyle(fontSize: 32);
+  static const _rowHeight = 56.0;
+  static const _rowGap = 32.0;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -49,29 +52,73 @@ class _TodayAgendaSlideContentState extends State<_TodayAgendaSlideContent> {
         height: double.infinity,
         color: Colors.transparent,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 48.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (_visibleCount >= 1)
-                const Text('🍑 岡山.Flutterとは？', style: TextStyle(fontSize: 32)),
-              if (_visibleCount >= 1) const Gap(40),
-              if (_visibleCount >= 2)
-                const Text('👋 自己紹介', style: TextStyle(fontSize: 32)),
-              if (_visibleCount >= 2) const Gap(40),
-              if (_visibleCount >= 3)
-                const Text('📱 アプリ開発は良いものだぞ', style: TextStyle(fontSize: 32)),
-              if (_visibleCount >= 3) const Gap(40),
-              if (_visibleCount >= 4)
-                const Text('👥 Flutterでつながる', style: TextStyle(fontSize: 32)),
-              if (_visibleCount >= 4) const Gap(40),
-              if (_visibleCount >= 5)
-                const Text('💪 自分ができること', style: TextStyle(fontSize: 32)),
-              if (_visibleCount >= 5) const Gap(40),
-              if (_visibleCount >= 6)
-                const Text('📢 岡山.Flutterの使い方', style: TextStyle(fontSize: 32)),
-            ],
+          padding: const EdgeInsets.symmetric(horizontal: 80.0),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: _rowHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: _visibleCount >= 1
+                        ? const Text('🍑 岡山.Flutterとは？', style: _itemStyle)
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+                const SizedBox(height: _rowGap),
+                SizedBox(
+                  height: _rowHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: _visibleCount >= 2
+                        ? const Text('👋 自己紹介', style: _itemStyle)
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+                const SizedBox(height: _rowGap),
+                SizedBox(
+                  height: _rowHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: _visibleCount >= 3
+                        ? const Text('📱 アプリ開発は良いものだぞ', style: _itemStyle)
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+                const SizedBox(height: _rowGap),
+                SizedBox(
+                  height: _rowHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: _visibleCount >= 4
+                        ? const Text('👥 Flutterでつながる', style: _itemStyle)
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+                const SizedBox(height: _rowGap),
+                SizedBox(
+                  height: _rowHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: _visibleCount >= 5
+                        ? const Text('💪 自分ができること', style: _itemStyle)
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+                const SizedBox(height: _rowGap),
+                SizedBox(
+                  height: _rowHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: _visibleCount >= 6
+                        ? const Text('📢 岡山.Flutterの使い方', style: _itemStyle)
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

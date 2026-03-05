@@ -14,9 +14,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final GlobalKey<_AnimatedFooterWidgetState> _footerWidgetKey =
-      GlobalKey<_AnimatedFooterWidgetState>();
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -76,9 +73,9 @@ class _AppState extends State<App> {
             ),
           ),
           transition: const FlutterDeckTransition.fade(),
-          footer: FlutterDeckFooterConfiguration(
+          footer: const FlutterDeckFooterConfiguration(
             showSlideNumbers: true,
-            widget: _AnimatedFooterWidget(key: _footerWidgetKey),
+            widget: _AnimatedFooterWidget(),
           ),
         ),
         locale: const Locale('ja'),
@@ -90,7 +87,7 @@ class _AppState extends State<App> {
 }
 
 class _AnimatedFooterWidget extends StatefulWidget {
-  const _AnimatedFooterWidget({super.key});
+  const _AnimatedFooterWidget();
 
   @override
   State<_AnimatedFooterWidget> createState() => _AnimatedFooterWidgetState();
