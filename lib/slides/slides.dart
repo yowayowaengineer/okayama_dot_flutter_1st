@@ -6,6 +6,8 @@ import 'package:okayama_dot_flutter_1st/slides/src/me/who_am_i_1_slide.dart';
 import 'package:okayama_dot_flutter_1st/slides/src/opening/icebreak_slide.dart';
 import 'package:okayama_dot_flutter_1st/slides/src/opening/today_agenda_slide.dart';
 import 'package:okayama_dot_flutter_1st/slides/src/vision/vision_slide.dart';
+import 'package:okayama_dot_flutter_1st/slides/src/what_i_can_do/what_i_can_do_slide.dart';
+import 'package:okayama_dot_flutter_1st/slides/src/how_to_use/how_to_use_slide.dart';
 
 List<FlutterDeckSlideWidget> get slides => [
   // オープニング
@@ -23,6 +25,12 @@ List<FlutterDeckSlideWidget> get slides => [
 
   // Flutterでつながる
   const FlutterConnectionsSlide(),
+
+  // 自分ができること
+  const WhatICanDoSlide(),
+
+  // 岡山.Flutterの使い方
+  const HowToUseSlide(),
 
   // クロージング
   const EndingSlide(),
