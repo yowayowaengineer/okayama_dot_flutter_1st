@@ -1,11 +1,11 @@
 {
-    "name": "okayama_dot_flutter_1st",
-    "short_name": "okayama_dot_flutter_1st",
+    "name": "岡山でFlutterを盛り上げようぜって話R",
+    "short_name": "Flutter.岡山",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Flutter.岡山 記念すべき第1回のセッション資料です✨️",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
