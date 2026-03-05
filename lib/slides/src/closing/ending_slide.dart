@@ -27,8 +27,31 @@ class _EndingSlideContent extends StatefulWidget {
   State<_EndingSlideContent> createState() => _EndingSlideContentState();
 }
 
-class _EndingSlideContentState extends State<_EndingSlideContent> {
+class _EndingSlideContentState extends State<_EndingSlideContent>
+    with SingleTickerProviderStateMixin {
   bool _firstTextCompleted = false;
+  bool _showRevengeLine = false;
+
+  late final AnimationController _impactController;
+  late final Animation<double> _impactScale;
+
+  @override
+  void initState() {
+    super.initState();
+    _impactController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _impactScale = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _impactController, curve: Curves.elasticOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _impactController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +121,42 @@ class _EndingSlideContentState extends State<_EndingSlideContent> {
                       ],
                       isRepeatingAnimation: false,
                       totalRepeatCount: 1,
+                      onFinished: () {
+                        Future.delayed(const Duration(milliseconds: 400), () {
+                          if (mounted) {
+                            setState(() => _showRevengeLine = true);
+                            _impactController.forward();
+                          }
+                        });
+                      },
                     ),
                   ),
+                // 3行目：R.png（400×400・影なし・でーん！スケールエフェクト）
+                if (_showRevengeLine) ...[
+                  const SizedBox(height: 32),
+                  Center(
+                    child: ScaleTransition(
+                      scale: _impactScale,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          'assets/images/R.png',
+                          width: 400,
+                          height: 400,
+                          fit: BoxFit.contain,
+                          errorBuilder: (_, __, ___) => SizedBox(
+                            width: 400,
+                            height: 400,
+                            child: Container(
+                              color: Colors.grey.withOpacity(0.2),
+                              child: Icon(Icons.image_outlined, size: 48, color: Colors.grey.withOpacity(0.6)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
